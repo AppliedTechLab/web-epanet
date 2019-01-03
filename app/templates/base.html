@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
     <link href="/static/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -49,7 +49,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/index">Web EPANET</a>
+          <a class="navbar-brand" href="/index">
+              <span style="font-family: 'Orbitron'">
+                  <strong>Web EPANET</strong>
+              </span>
+          </a>
         </div>
 
         <div class="collapse navbar-collapse">
@@ -75,12 +79,137 @@
           <!-- Modal Body -->
           <div class="modal-body" align="left">
               <p>Please upload a suitable file below.
-                  If you are converting multiple files, refresh the page before doing so.</p>
-             <label for="myfile" class="control-label">Choose a file <font color="red">*</font></label>
-
+                  If you are converting multiple files, refresh the page before doing so.
+              </p>
+              <label for="myfile" class="control-label">Choose a file <font color="red">*</font></label>
               <label class="btn btn-default">
               <input name="myfile" type="file" class="form-control" id="myfile" hidden required>
-          </label>
+              </label>
+              <br><br>
+
+              <h4>Customize (Optional):</h4>
+              <hr>
+              <p><i>Values already in boxes are default. If you do not wish to enter your own variables,
+                  skip this section.</i></p>
+
+              <p>Enter the average pipe length (m) between the water main and a household’s sump,
+              meter, or rooftank: </p>
+              <div class="form-group">
+              <label for="var-1" class="col-sm-2 control-label"> pipeLengthHH</label>
+                <div class="col-sm-10">
+                <input name="var-1" class="control-label" id="var-1" placeholder="10">
+                </div>
+              </div>
+
+              <p>Enter the average roughness factor for existing pipes: </p>
+              <div class="form-group">
+              <label for="var-2" class="col-sm-2 control-label"> pipeRoughHH</label>
+                <div class="col-sm-10">
+                <input name="var-2" class="control-label" id="var-2" placeholder="110">
+                </div>
+              </div>
+
+              <p>Enter diameter of individual household connections (mm): </p>
+              <div class="form-group">
+              <label for="var-3" class="col-sm-2 control-label"> pipeDia</label>
+                <div class="col-sm-10">
+                <input name="var-3" class="control-label" id="var-3" placeholder="15">
+                </div>
+              </div>
+
+              <p>Enter the minor loss coefficient between the main and the household’s sump,
+                  meter, or rooftank: </p>
+              <div class="form-group">
+              <label for="var-4" class="col-sm-2 control-label"> lossCoef</label>
+                <div class="col-sm-10">
+                <input name="var-4" class="control-label" id="var-4" placeholder="8">
+                </div>
+              </div>
+
+              <p>Enter the x-coordinate offset to use in EPANET so the added tank does not get placed on
+                  top of the junction it connects to:</p>
+              <div class="form-group">
+              <label for="var-5" class="col-sm-2 control-label"> xOffset</label>
+                <div class="col-sm-10">
+                <input name="var-5" class="control-label" id="var-5" placeholder="5">
+                </div>
+              </div>
+
+              <p>Enter the y-coordinate offset to use in EPANET so the added tank does not get placed
+                  on top of the junction it connects to:</p>
+              <div class="form-group">
+              <label for="var-6" class="col-sm-2 control-label"> yOffset</label>
+                <div class="col-sm-10">
+                <input name="var-6" class="control-label" id="var-6" placeholder="5">
+                </div>
+              </div>
+
+              <p>Enter the height (not elevation) of the household’s tank or sump (m).
+                  For households without a physical tank, enter 0.1:</p>
+              <div class="form-group">
+              <label for="var-7" class="col-sm-2 control-label"> tankHeight </label>
+                <div class="col-sm-10">
+                <input name="var-7" class="control-label" id="var-7" placeholder="1">
+                </div>
+              </div>
+
+              <p>Enter the percent (0 to 1) of a node’s daily demand that will fill a tank.
+                  For networks that do morning and evening supply, this might be 0.5 or 0.75.
+                  For networks that supply alternate days, this would then be 2:</p>
+              <div class="form-group">
+              <label for="var-8" class="col-sm-2 control-label"> dayPercent </label>
+                <div class="col-sm-10">
+                <input name="var-8" class="control-label" id="var-8" placeholder="1">
+                </div>
+              </div>
+
+              <p>The algorithm assumes some skeletonization has been done in the network model.
+                 It scales the parameters of the typical house given above by the number of houses
+                  that are combined at the node. To do this, an average household consumption value
+                  is needed (liters per household per day):</p>
+              <div class="form-group">
+              <label for="var-9" class="col-sm-2 control-label"> HHDaily </label>
+                <div class="col-sm-10">
+                <input name="var-9" class="control-label" id="var-9" placeholder="1100">
+                </div>
+              </div>
+
+              <p>MANDATORY: The algorithm splits all demand nodes into three categories.
+                  The first category gets tanks at one elevation, the second gets tanks
+                  at a different elevation, and the third category is ignored. We use
+                  the first letter of the node’s name is determine which category it
+                  should go in. Category 1 nodes should start with this letter:</p>
+              <div class="form-group">
+              <label for="var-10" class="col-sm-2 control-label"> Category1 </label>
+                <div class="col-sm-10">
+                <input name="var-10" class="control-label" id="var-10" placeholder="J">
+                </div>
+              </div>
+
+              <p>STRONGLY SUGGESTED: Category 2 nodes should start with this letter:</p>
+              <div class="form-group">
+              <label for="var-11" class="col-sm-2 control-label"> Category2 </label>
+                <div class="col-sm-10">
+                <input name="var-11" class="control-label" id="var-11" placeholder="L">
+                </div>
+              </div>
+
+              <p>Category 1 nodes will have tanks placed at this height above the node’s elevation (m):</p>
+              <div class="form-group">
+              <label for="var-12" class="col-sm-2 control-label"> bpDepth </label>
+                <div class="col-sm-10">
+                <input name="var-12" class="control-label" id="var-12" placeholder="0">
+                </div>
+              </div>
+
+              <p>Category 2 nodes will have tanks placed at this height above the node’s elevation (m):</p>
+              <div class="form-group">
+              <label for="var-13" class="col-sm-2 control-label"> sDepth </label>
+                <div class="col-sm-10">
+                <input name="var-13" class="control-label" id="var-13" placeholder="0">
+                </div>
+              </div>
+
           </div>
           <!-- Modal Footer -->
           <div class="modal-footer">
@@ -99,8 +228,8 @@
     </div>
 
 
-  <div style="padding-top: 10px; padding-bottom: 25px; text-align: center;">
-      Web EPANET (2019) <br>
+  <div style="padding-top: 25px; padding-bottom: 25px; text-align: center;">
+      <span style="font-family: 'Orbitron'"><strong>Web EPANET</strong></span> (2019) <br>
       Code available on
         <a href="https://github.com/paiva/web-epanet">
             Github <i class="fa fa-github" aria-hidden="true"></i>

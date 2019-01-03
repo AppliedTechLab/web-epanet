@@ -1,8 +1,23 @@
 from app import app
 from flask import render_template
+from app.forms import UploadForm
+
 @app.route('/')
 @app.route('/index')
 
 def index():
-    user = {'username': 'David'}
-    return render_template('index.html', title='Home', user=user)
+    return render_template('index.html', title='Home')
+
+
+@app.route('/upload')
+def upload():
+    form = UploadForm()
+    return render_template('upload.html', title='Upload', form=form)
+
+@app.route('/about')
+def about():
+    return render_template('about.html', title='About')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html', title='Contact')
