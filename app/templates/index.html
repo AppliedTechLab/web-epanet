@@ -1,3 +1,31 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
+{% block content %}
+    <div class="jumbotron" style="text-align: center">
 
+    <h2>Welcome to Web EPANET</h2>
+    <hr>
+        <h3>Instructions</h3>
+        <br>
+        <div style="text-align: left">
+        <p>To use Webt EPANET, follow these steps:</p>
+        <p>1. Locate the suitable .inp file from your hydraulic modeling software that you would
+            like to use. This interface also accepts equivalent .txt files.</p>
+    <div style="text-align: center;">
+        <img src="static/img/sample.png" style="width: 70%; height: 70%"/>
+        <br>
+        Example of suitable .inp file
+
+    </div>
+    <br>
+    <p>2. If you would like to customize your certain variables, type them in the
+        textboxes under the Customize section. Simply type in the new value
+        (no spaces or letters), and press "Enter Variable." Note that some sections
+        are mandatory for the program to function.
+        These variables are labeled as "MANDATORY."</p>
+            <p>3. Upload your suitable file under the <strong>Upload</strong> section.</p>
+            <p>4. Then press the create button under the <strong>Create</strong> section and follow the download link to your new .inp file.</p>
+    </div>
+    </div>
+
+{% endblock %}
