@@ -11,8 +11,8 @@ def index():
 
 @app.route('/upload')
 def upload():
-    form = UploadForm()
-    return render_template('upload.html', title='Upload', form=form)
+    #form = UploadForm()
+    return render_template('upload.html', title='Upload')
 
 @app.route('/about')
 def about():
