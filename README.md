@@ -1,5 +1,7 @@
 # Web-EPANET
 
+**This project is now discontinued**
+
 ### Requirements
 
 ```
